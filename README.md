@@ -2,7 +2,7 @@
 
 A simple AI-powered writing tool that helps users improve their essays by providing structured feedback, suggestions, and answers about their writing.
 
-Test it here: https://stephanie-murrile.github.io/AI-Writing-Coach/
+Test it here: https://stephanie-murrile.github.io/AI-Writing-Coach/ 
 
 ## What it does
 
