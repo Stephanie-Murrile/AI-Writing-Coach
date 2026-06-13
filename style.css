@@ -1,0 +1,133 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.container {
+  display: flex;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.editor {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  background: #0b1220;
+  border-right: 2px solid #1f2937;
+  overflow: hidden;
+}
+
+textarea {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: #e5e7eb;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.assistant {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  background: #0b1220;
+  border-left: 2px solid #1f2937;
+  overflow: hidden;
+}
+
+.header {
+  padding: 10px;
+  font-weight: bold;
+  color: #e5e7eb;
+  flex-shrink: 0;
+}
+
+#aiOutput {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px;
+  background: #111827;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg {
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.msg.user {
+  background: #2563eb;
+  align-self: flex-end;
+  color: #ffffff;
+}
+
+.msg.bot {
+  background: #1f2937;
+  align-self: flex-start;
+  color: #e5e7eb;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+.assistant input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #1f2937;
+  outline: none;
+  background: #0b1220;
+  color: #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.assistant button {
+  padding: 10px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  border-radius: 6px;
+}
+
+.assistant button:hover {
+  background: #16a34a;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .editor {
+    width: 100%;
+    height: 45%;
+    border-right: none;
+    border-bottom: 2px solid #1f2937;
+  }
+
+  .assistant {
+    width: 100%;
+    height: 55%;
+    border-left: none;
+  }
+}

@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Writing Assistant</title>
+  <meta name="author" content="Stephanie Murrile">
+  <meta name="contact" content="murrilestephanie@gmail.com">
+  <meta name="copyright" content="If you would like to use this content or hire the developer, please email murrilestephanie@gmail.com for inquiries.">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="editor">
+    <textarea id="essay" placeholder="Write your essay here..."></textarea>
+  </div>
+
+  <div class="assistant">
+
+    <div class="header">AI Writing Coach</div>
+
+    <div id="aiOutput"></div>
+
+    <div class="input-box">
+      <input id="input" placeholder="Ask about your writing..." />
+      <button onclick="sendMessage()">Ask</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const API_URL = "https://daucrwyamkhbjxsnlpex.supabase.co/functions/v1/chat";
+const API_KEY = "sb_publishable_5pVdYlwX6sSCae7yhT3SrA_wav-qCp5";
+
+function addMessage(text, type) {
+  const div = document.createElement("div");
+  div.className = "msg " + type;
+  div.textContent = text;
+
+  const box = document.getElementById("aiOutput");
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function sendMessage() {
+  const input = document.getElementById("input");
+  const essay = document.getElementById("essay").value;
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  addMessage("You: " + question, "user");
+  input.value = "";
+
+  const loading = document.createElement("div");
+  loading.className = "msg bot";
+  loading.textContent = "Thinking...";
+  document.getElementById("aiOutput").appendChild(loading);
+
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + API_KEY,
+        "apikey": API_KEY
+      },
+      body: JSON.stringify({
+        message: question,
+        essay: essay
+      })
+    });
+
+    const data = await res.json();
+
+    loading.remove();
+    addMessage(data.reply || "No response", "bot");
+
+  } catch (err) {
+    loading.remove();
+    addMessage("Error: " + err.message, "bot");
+  }
+}
+</script>
+
+</body>
+</html>
+```
